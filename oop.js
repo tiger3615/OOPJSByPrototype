@@ -96,35 +96,7 @@ var m = {
 				}
 			}
 		}
-	},
-	include: function() {
-		var activeX = ['MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP'];
-		var http;
-		try {
-			http = new XMLHttpRequest();
-		} catch(e) {
-			for(var i = 0; i < activeX.length; ++i) {
-				try {
-					http = new ActiveXObject(activeX[i]);
-					break;
-				} catch(e) {}
-			}
-		}
-		var jslist = new Array();
-		return function(filePath) {
-			for(var i = 0; i < jslist.length; i++) {
-				if(jslist[i] == filePath) {
-					return;
-				}
-			}
-			jslist[jslist.length] = filePath;
-			if(http) {
-				http.open("get", filePath, false);
-				http.send(null);
-			}
-			window.eval(http.responseText);
-		}
-	}()
+	}
 };
 Function.prototype.extend = function(superCls) {
 	var self_prototype = this.prototype;
